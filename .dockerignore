@@ -1,0 +1,14 @@
+.mypy_cache
+.pytest_cache
+.venv
+.vscode
+__pycache__
+*__pycache__*
+.DS_Store
+*.DS_Store*
+.coverage
+.flake8
+.git
+.gitignore
+.idea
+README.md

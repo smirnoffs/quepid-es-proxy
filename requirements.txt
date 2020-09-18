@@ -1,0 +1,9 @@
+fastapi==0.61.1
+uvicorn==0.11.8
+asynctest==0.13.0
+pytest==6.0.2
+pytest-cov==2.10.1
+pytest-aiohttp==0.3.0
+coverage==5.3
+elasticsearch==7.9.1
+pre-commit==2.7.1
