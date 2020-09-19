@@ -1,14 +1,14 @@
 # Quepid Elasticsearch Proxy
-## Elasticsearch proxy for Quepid. 
+## Elasticsearch proxy for Quepid.
 A lot of Quepid users are surprised by the fact that Quepid
-works with Elasticsearch directly from the browser. Elasticsearch are 
-rarely available publicly or can be tunnneled to the labeller's computer.
+works with Elasticsearch directly from the browser. Elasticsearch are
+rarely available publicly or can be tunneled to the labeler's computer.
 
 `Quepid Elasticsearch Proxy` can be deployed next to your `Quepid` and can proxy requests to Elasticsearch. The proxy is protected with basic auth.
 
 
 ## Run with Docker
-The image of the proxy is publicly available on [https://quay.io/amboss-mededu/quepid_es_proxy]().
+The image of the proxy is publicly available on [https://quay.io/amboss-mededu/quepid_es_proxy](https://quay.io/amboss-mededu/quepid_es_proxy).
 To run the proxy docker execute
 ```bash
 docker run \
@@ -21,10 +21,10 @@ docker run \
 -p 5000:5000 \
 quay.io/amboss-mededu/quepid_es_proxy
 ```
-The proxy is now available with basic auth now on `http://username_is_here:password_is_here@localhost:5000/`. 
-Use this address in Quepid insted of Elasticsearch.
+The proxy is now available with basic auth now on `http://username_is_here:password_is_here@localhost:5000/`.
+Use this address in Quepid instead of Elasticsearch.
 
-If you run Elasticsearch locally in Docker, use Docker DNS in `ES_HOST`. 
+If you run Elasticsearch locally in Docker, use Docker DNS in `ES_HOST`.
 You might also need to specify a Docker network in which Elasticsearch is running.
 ```bash
 docker run \
@@ -57,6 +57,5 @@ The code base is formatted with [https://github.com/psf/black](black).
 ### Imports
 Imports are sorted with [https://github.com/PyCQA/isort](isort).
 ### Pre-commit hooks.
-1. Install pre-commit. On Mac use `brew install pre-commit`, on Linux `pip install pre-commit`. 
+1. Install pre-commit. On Mac use `brew install pre-commit`, on Linux `pip install pre-commit`.
 2. Install hooks `pre-commit install`.
-
