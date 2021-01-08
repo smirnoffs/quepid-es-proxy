@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
