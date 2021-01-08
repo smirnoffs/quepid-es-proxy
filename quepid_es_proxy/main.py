@@ -32,7 +32,7 @@ class ProxyRequst(BaseModel):
     explain: bool
     from_: int
     size: int
-    source: Optional[List[str]]
+    source: Union[str, List[str], None]
     query: Optional[dict]
 
     class Config:
