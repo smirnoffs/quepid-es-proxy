@@ -1,4 +1,4 @@
-fastapi==0.61.1
+fastapi==0.65.2
 uvicorn==0.11.8
 asynctest==0.13.0
 pytest==6.0.2
