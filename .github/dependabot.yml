@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    pull-request-branch-name:
+      separator: "-"
+  # Keep Dockerfile up to date
+  - package-ecosystem: "docker"
+    directory: "/"
+    ignore:
+      - dependency-name: "python"
+        versions: [">= 4"]
+    pull-request-branch-name:
+      separator: "-"
+    schedule:
+      interval: "daily"
