@@ -5,3 +5,4 @@ pytest-cov==2.10.1
 pytest-aiohttp==0.3.0
 pre-commit==2.7.1
 coverage==5.3
+ruff==0.1.6 
