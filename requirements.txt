@@ -1,5 +1,5 @@
 fastapi==0.65.2
-uvicorn==0.11.8
+uvicorn==0.24.0.post1
 asynctest==0.13.0
 pytest==6.0.2
 pytest-cov==2.10.1
