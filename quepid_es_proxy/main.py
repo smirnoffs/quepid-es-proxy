@@ -1,8 +1,6 @@
-from typing import List, Optional, Union
-
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .auth import basic_auth
 from .elasticsearch import executor
@@ -10,7 +8,7 @@ from .elasticsearch import executor
 app = FastAPI()
 
 # Replace "*" to the list of your origins, e.g.
-# origins = ["quepid.yourcompany.com", "localhost:8080"]
+# origins = ["quepid.yourcompany.com", "localhost:8080"]  # noqa: ERA001
 origins = "*"
 
 app.add_middleware(
@@ -30,20 +28,15 @@ async def root():
 
 class ProxyRequst(BaseModel):
     explain: bool
-    from_: int
+    from_: int = Field(..., alias="from")
     size: int
-    source: Union[str, List[str], None]
-    query: Optional[dict]
-
-    class Config:
-        fields = {"from_": "from", "source": "_source"}
+    source: str | list[str] | None = Field(None, alias="_source")
+    query: dict | None
 
 
 @app.post("/{index_name}")
-async def search_proxy(
-    index_name: str, body: ProxyRequst, username: str = Depends(basic_auth)
-) -> dict:
-    result = await executor.search(
+async def search_proxy(index_name: str, body: ProxyRequst, username: str = Depends(basic_auth)) -> dict:
+    return await executor.search(
         index_name,
         body.from_,
         body.size,
@@ -52,7 +45,6 @@ async def search_proxy(
         {"query": body.query} if body.query else None,
         None,
     )
-    return result
 
 
 @app.get("/{index_name}")
@@ -63,7 +55,7 @@ async def explain_missing_documents(
     size: int,
     username: str = Depends(basic_auth),
 ) -> dict:
-    result = await executor.search(
+    return await executor.search(
         index_name,
         0,
         size,
@@ -72,7 +64,6 @@ async def explain_missing_documents(
         None,
         q,
     )
-    return result
 
 
 @app.post("/{index_name}/_doc/{doc_id}/_explain")

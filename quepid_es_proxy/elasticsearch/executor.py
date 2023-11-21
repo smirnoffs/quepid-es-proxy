@@ -1,5 +1,3 @@
-from typing import List, Optional
-
 from .connection import get_connection
 
 
@@ -8,9 +6,9 @@ async def search(
     from_: int,
     size: int,
     explain: bool = False,
-    source: Optional[List[str]] = None,
-    query: Optional[str] = None,
-    q: Optional[str] = None,
+    source: list[str] | None = None,
+    query: str | None = None,
+    q: str | None = None,
 ):
     conn = await get_connection()
     payload = {
