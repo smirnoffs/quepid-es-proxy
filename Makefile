@@ -1,28 +1,18 @@
-.PHONY: doit prepare-env run-tests
+.PHONY: lint prepare-env tests
 
 # Removes the existing virtualenv, creates a new one, install dependencies.
 prepare-env:
 	rm -rf .venv
-	python3.8 -m venv .venv
+	python3.11 -m venv .venv
 	.venv/bin/pip install -U pip
-	.venv/bin/pip install -r requirements.txt
+	.venv/bin/pip install -r requirements-dev.txt
 
 
-doit:
-	# Dependencies should be installed from requirements-dev.txt.
-	# Sorts imports in python files.
-	docker run -v `pwd`:`pwd` -w `pwd` quay.io/amboss-mededu/pyfmt:0.7 isort .
-	docker run -v `pwd`:`pwd` -w `pwd` quay.io/amboss-mededu/pyfmt:0.7 black --exclude .venv .
-	# Linting.
-	docker run -v `pwd`:`pwd` -w `pwd` quay.io/amboss-mededu/pyfmt:0.7 flake8 --exclude .venv --exclude=.venv --max-line-length=120 .
-	# Formats python files again after flake8.
-	docker run -v `pwd`:`pwd` -w `pwd` quay.io/amboss-mededu/pyfmt:0.7 black --exclude .venv .
-	# Static type checking.
-	docker run -v `pwd`:`pwd` -w `pwd` quay.io/amboss-mededu/pyfmt:0.7 mypy --ignore-missing-imports quepid_es_proxy
+lint:
+	.venv/bin/ruff format .
 
-
-run-tests:
-	PYTHONPATH=`pwd` .venv/bin/pytest -W ignore tests/units --cov-report xml:cov.xml --cov .
+tests:
+	PYTHONPATH=`pwd` .venv/bin/pytest -vv -W ignore tests/units --cov-report xml:cov.xml --cov .
 
 run-server:
 	PROXY_USERNAME="lab_user" \
