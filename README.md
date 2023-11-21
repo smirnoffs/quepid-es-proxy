@@ -8,7 +8,9 @@ rarely available publicly or can be tunneled to the labeler's computer.
 
 
 ## Run with Docker
-The image of the proxy is publicly available on [https://quay.io/amboss-mededu/quepid_es_proxy](https://quay.io/amboss-mededu/quepid_es_proxy).
+~~The image of the proxy is publicly available on [https://quay.io/amboss-mededu/quepid_es_proxy](https://quay.io/amboss-mededu/quepid_es_proxy).~~
+Currently the image is not publicly available. Please build it locally.
+
 To run the proxy docker execute
 ```bash
 docker run \
@@ -19,7 +21,7 @@ docker run \
 -e "ES_USE_SSL=true" \
 -e "WEB_CONCURRENCY=2" \
 -p 5000:5000 \
-quay.io/amboss-mededu/quepid_es_proxy
+quepid_es_proxy
 ```
 The proxy is now available with basic auth now on `http://username_is_here:password_is_here@localhost:5000/`.
 Use this address in Quepid instead of Elasticsearch.
@@ -36,12 +38,12 @@ docker run \
 -e "WEB_CONCURRENCY=2" \
 -p 5000:5000 \
 --network="elasticsearch-docker-network" \
-quay.io/amboss-mededu/quepid_es_proxy
+quepid_es_proxy
 ```
 
 ## Run locally with Python virtual environment.
 
-Proxy uses Python 3.8.
+Proxy uses Python 3.11.
 
 First prepare a virtual environment `make prepare-env`.
 The proxy will be available with the default credentials on
